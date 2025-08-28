@@ -6,7 +6,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import UserDashboard from "./pages/Dashboard/UserDashBoard";
 import AdminDashboard from "./pages/Dashboard/AdminDashBoard";
-import ManageUsers from "./pages/Dashboard/Manageusers";
+import ManageUsers from "./pages/Dashboard/ManageUsers";
 import Navbar from "./components/Navbar";
 import Profile from "./components/Profilepage";
 
