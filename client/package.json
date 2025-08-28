@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run clean && vite build",
+    "preview": "vite preview",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "clean": "rm -rf dist",
+    "start": "vite preview"
   },
   "dependencies": {
     "axios": "^1.11.0",
