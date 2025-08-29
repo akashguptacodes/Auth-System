@@ -101,7 +101,7 @@ console.log(user);
           <p><strong>Last Name:</strong> {profile.lastName}</p>
           <p><strong>Email:</strong> {profile.email}</p>
           <p><strong>Role:</strong> {profile.role}</p>
-          <p><strong>Image URL:</strong> {profile.image}</p>
+          {/* <p><strong>Image URL:</strong> {profile.image}</p> */}
           {profile.image && (
             <img src={profile.image} alt="Profile" className="w-32 h-32 rounded mt-2" />
           )}
