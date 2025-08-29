@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useAuth } from "../../context/AuthContext";
 
 export default function ManageUsers() {
+  const {user}=useAuth();
   const [users, setUsers] = useState([]);
   const [editingUser, setEditingUser] = useState(null); // user being edited
   const [form, setForm] = useState({
@@ -63,18 +65,43 @@ export default function ManageUsers() {
     }
   };
 
-  const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this user?")) return;
-    try {
-      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/user/delete/${id}`, {
-        withCredentials: true,
-      });
-      setUsers(users.filter((u) => u.id !== id));
-    } catch (err) {
-      console.error(err);
-      alert("Failed to delete user");
-    }
-  };
+  // const handleDelete = async (id) => {
+  //   if (!window.confirm("Are you sure you want to delete this user?")) return;
+  //   try {
+  //     await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/user/delete/${id}`, {
+  //       withCredentials: true,
+  //     });
+  //     setUsers(users.filter((u) => u.id !== id));
+  //   } catch (err) {
+  //     console.error(err);
+  //     alert("Failed to delete user");
+  //   }
+  // };
+
+
+const handleDelete = async (id) => {
+  // Suppose you have logged-in user info in state/context
+  // e.g., currentUser = { id: "...", email: "..." }
+  if (id === user.id) {
+    alert("You cannot delete your own account.");
+    return;
+  }
+
+  if (!window.confirm("Are you sure you want to delete this user?")) return;
+
+  try {
+    await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/user/delete/${id}`, {
+      withCredentials: true,
+    });
+
+    setUsers(users.filter((u) => u.id !== id));
+  } catch (err) {
+    console.error(err);
+    alert("Failed to delete user");
+  }
+};
+
+
 
   return (
     <div className="p-6">

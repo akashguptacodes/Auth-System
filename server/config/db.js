@@ -16,7 +16,7 @@ const initDB = async () => {
 
     // 2. Create database if not exists
     await connection.query("CREATE DATABASE IF NOT EXISTS defaultdb");
-    console.log("✅ Database ensured: defaultdb");
+    console.log("Database ensured: defaultdb");
 
     // 3. Create pool connection for queries
     const pool = mysql.createPool({
@@ -50,7 +50,7 @@ const initDB = async () => {
     )
     `);
 
-    console.log("✅ Table ensured: users");
+    console.log("Table ensured: users");
 
     return pool;
   } catch (err) {

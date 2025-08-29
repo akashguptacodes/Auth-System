@@ -4,7 +4,7 @@ let db;
 (async () => {
   db = await initDB();
 
-  // ✅ Ensure users table exists
+  //  Ensure users table exists
   await db.execute(`
     CREATE TABLE IF NOT EXISTS users (
       id INT AUTO_INCREMENT PRIMARY KEY,
@@ -21,7 +21,7 @@ let db;
     )
   `);
 
-  // ✅ Ensure profiles table exists
+  //  Ensure profiles table exists
   await db.execute(`
     CREATE TABLE IF NOT EXISTS profiles (
       id INT AUTO_INCREMENT PRIMARY KEY,
@@ -36,7 +36,7 @@ let db;
     )
   `);
 
-  // ✅ Ensure at least one admin user exists
+  //  Ensure at least one admin user exists
   const [admins] = await db.execute("SELECT * FROM users WHERE role = 'Admin' LIMIT 1");
   if (admins.length === 0) {
     const bcrypt = require("bcryptjs");
@@ -54,7 +54,7 @@ let db;
         )}`
       ]
     );
-    console.log("✅ Default admin created (email: admin@example.com, password: admin123)");
+    console.log("Default admin created (email: admin@example.com, password: admin123)");
   }
 })();
 
