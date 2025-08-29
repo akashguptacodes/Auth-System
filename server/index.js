@@ -8,10 +8,9 @@ const userRoutes = require("./routes/userRoutes");
 const startServer = async () => {
   const app = express();
 
-  // Enable CORS for all origins (you can restrict it to your frontend later)
   app.use(cors({
-    origin: process.env.FRONTEND_URL, // your Vite frontend URL
-    credentials: true // if you send cookies
+    origin: process.env.FRONTEND_URL,
+    credentials: true
   }));
 
   app.use(express.json());
@@ -21,7 +20,7 @@ app.use(cookieParser());
 
   // Init DB
   const db = await initDB();
-  app.set("db", db); // optional: store in app for global use
+  app.set("db", db);
 
   // Routes
   app.use("/auth", authRoutes);
